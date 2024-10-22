@@ -21,6 +21,7 @@ namespace Hybrid.Mobile.Service
             var securityToken = JwtTokenHelper.GetJwtToken(token!);
             await SaveAsync("Client", securityToken.Claims.FirstOrDefault(c => c.Type == "azp")!.Value);
             await SaveAsync("UserName", securityToken.Claims.FirstOrDefault(c => c.Type == "preferred_username")!.Value);
+            await SaveAsync("Name", securityToken.Claims.FirstOrDefault(c => c.Type == "name")!.Value);
             await SaveAsync("Issuer", securityToken.Claims.FirstOrDefault(c => c.Type == "iss")!.Value);
             await SaveAsync("Exp-time", securityToken.Claims.First(c => c.Type == "exp")!.Value);
         }
